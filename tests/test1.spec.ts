@@ -1,6 +1,6 @@
-import { test, Expect, expect } from "@playwright/test";
+import { test,  expect } from "@playwright/test";
 
-test("Title", async ({page})=>
+test("Verify the page title", async ({page})=>
 {
    await page.goto("https://playwright.dev/docs/intro");
 
@@ -8,8 +8,10 @@ test("Title", async ({page})=>
    console.log("Title is: ", title);
 
     await expect(page).toHaveTitle("Installation | Playwright");
+    await expect(page).toHaveURL(/playwright/);
     
-// testing1
+// testing1git add .
+
 
 }
 )
