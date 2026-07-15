@@ -10,7 +10,7 @@ test("Verify the page title", async ({page})=>
     await expect(page).toHaveTitle("Installation | Playwright");
     await expect(page).toHaveURL(/playwright/);
     
-// testing1git add .
+// testing1git add  .
 
 
 }
