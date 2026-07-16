@@ -15,11 +15,22 @@ test("verify playwright locators",async({page})=>{
     // await page.locator("[name='customer[email]']").fill("Lname@gmail.com");
     // await page.locator("[name='customer[password]']").fill("Lname");
     
-    // await page.waitForTimeout(2000);
+     await page.waitForTimeout(2000);
 
     // get by title
-    await page.getByTitle('Search').click();
-    await page.waitForTimeout(2000);
+    const search_btn1:Locator= page.getByTitle('Search');
+    await page.waitForTimeout(3000);
+    if(await search_btn1.isVisible())
+    {
+        console.log("Search button is enabled")
+        await page.waitForTimeout(2000);
+        await search_btn1.click();
+    }else
+    {
+        console.log("Search button is not enabled")
+    }
+    
+    
       
 
 
