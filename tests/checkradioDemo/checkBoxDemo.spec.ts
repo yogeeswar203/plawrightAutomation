@@ -66,7 +66,7 @@ test("Verify Radio buttons",async({page})=>{
 
 
     await page.waitForTimeout(4000);
-})
+});
 
 
 test.only("Verify Check boxes",async({page})=>{
@@ -74,9 +74,9 @@ test.only("Verify Check boxes",async({page})=>{
     await page.goto("https://testautomationpractice.blogspot.com/");
     await page.waitForTimeout(2000);
     
-    const sun_chk_box = page.getByLabel("Sunday");
+    const sun_chk_box:Locator = page.getByLabel("Sunday");
     expect(await sun_chk_box.isEnabled()).toBe(true);
-    await sun_chk_box.click();
+    await sun_chk_box.check();
     await page.waitForTimeout(2000);
     await sun_chk_box.click();
 
@@ -87,6 +87,64 @@ test.only("Verify Check boxes",async({page})=>{
     {
         await sun_chk_box.click();
         console.log("check box is checked now")
+    }
+    
+    // selecting all the checkboxes
+
+    const days:string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    const checkboxes:Locator[] = days.map(index=>page.getByLabel(index));
+
+    for(const ckb of checkboxes)
+    {   
+        await page.waitForTimeout(1000);
+        if(await ckb.isChecked())
+        {
+            console.log("Check box is already checked");
+            await expect(ckb).toBeChecked();
+        }else
+        {
+            await ckb.check();
+            await expect(ckb).toBeChecked();
+        }
+    }
+
+    // to select only 3
+
+    for(const c of checkboxes.slice(-3))
+    {
+        await page.waitForTimeout(1000);
+        await c.uncheck();
+        await expect(c).not.toBeChecked();
+    }
+
+    // Selecting the selected check boxes as un checked and UN Selected check boxes as checked
+    for(const ck of checkboxes)
+    {
+        await page.waitForTimeout(1000);
+        if(await ck.isChecked())
+        {
+            await ck.uncheck();
+            await expect(ck).not.toBeChecked();
+            console.log("Selected day is un checked now");
+        }else
+        {
+            await ck.check();
+            await expect(ck).toBeChecked();
+            console.log("Un Selected check boxes are checked now");
+        }
+
+    }
+    
+    // selecting chek boxes randomly
+
+    const num:number[] = [0,1,2];
+
+    for(const i of num)
+    {
+       // await page.waitForTimeout(1000);
+        await checkboxes[i].check();
+        await expect(checkboxes[i]).toBeChecked();
     }
     
     
@@ -100,7 +158,5 @@ test.only("Verify Check boxes",async({page})=>{
     
     
     
-    
-    
-    await page.waitForTimeout(5000);
-})
+    //await page.waitForTimeout(6000);
+});
