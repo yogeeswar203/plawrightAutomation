@@ -100,7 +100,7 @@ test("Verify multi select dropdown",async({page})=>{
 
 })
 
-test.only("verify elements are sorted",async({page})=>{
+test("verify elements are sorted",async({page})=>{
 
         await page.goto("https://testautomationpractice.blogspot.com/");
         await page.waitForTimeout(5000);
@@ -143,4 +143,55 @@ test.only("verify elements are sorted",async({page})=>{
         await page.waitForTimeout(5000);
         await page.close();
 
+})
+
+
+
+test.only("Verify duplicates are present",async({page})=>{
+
+    await page.goto("https://testautomationpractice.blogspot.com/");
+    await page.waitForTimeout(5000);
+
+    const drp_colors = page.locator("#colors>option");
+    
+    // to remove the unnecessary spaces and get only exact text
+    
+    const optionText:string[] = (await drp_colors.allTextContents()).map(text=>text.trim());
+
+    const mySet = new Set<string>(); // declared the empty set. It won't allow the duplicates
+    const dup_arry:string[] = []; // declaring the empty set. it will allow the duplicate values
+    
+    for(const text of optionText)
+    {
+        if(mySet.has(text))
+        {
+                
+            dup_arry.push(text);
+        }else
+        {
+           mySet.add(text);
+        }
+    }
+    
+    console.log("Unique values:",mySet);
+    console.log("Duplicate values:",dup_arry);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    await page.waitForTimeout(5000);
+    await page.close();
 })
