@@ -63,3 +63,59 @@ test("Verifing auto selective dropdown",async({page})=>{
 
 
 })
+
+test.only("verify hidden dropdowns", async({page})=>{
+    page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    await page.waitForTimeout(5000);
+
+    // Login page
+    await page.locator("input[name='username']").fill("Admin");
+    await page.locator("input[name='password']").fill("admin123")
+    await page.locator("button[type='submit']").click();
+    await page.waitForTimeout(5000);
+
+    // Navigating to PIM
+    await page.getByText("PIM").click();
+    await page.waitForTimeout(2000);
+    // clicking on the 2nd drop down
+
+    await page.locator("form i").nth(2).click();
+
+    // getting allthe elements from the Job title
+
+    const job_title_locator = page.locator("div[role='option']>span");
+    const cn = await job_title_locator.count();
+    console.log();
+    console.log(await job_title_locator.allTextContents());
+    const all_job_options = await job_title_locator.allTextContents();
+
+    for(let i=0; i<cn; i++)
+    {
+        let role = await job_title_locator.nth(i).innerText();
+        if(role === "Software Engineer")
+        {
+            job_title_locator.nth(i).click();
+            break
+        }
+    }
+
+
+// Using for of loop
+for( let text of all_job_options)
+{
+    console.log(text);
+}
+
+
+
+
+
+
+
+
+
+    await page.waitForTimeout(5000);
+    page.close();
+
+
+})
