@@ -1,0 +1,7 @@
+URLs for the testing 
+for shopping demo site
+https://sauce-demo.myshopify.com/
+https://demowebshop.tricentis.com/
+
+Orange demo site
+https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
