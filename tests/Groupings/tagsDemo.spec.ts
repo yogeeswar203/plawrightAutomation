@@ -4,6 +4,9 @@ import {test,expect} from "@playwright/test";
 npx playwright test tagsDemo.spec.ts --headed --grep "@smoke"
 npx playwright test tagsDemo.spec.ts --headed --grep "@sanity"
 npx playwright test tagsDemo.spec.ts --headed --grep "@regression"
+npx playwright test tagsDemo.spec.ts --headed --grep "(?=.*@regression)(?=.*@smoke)"
+npx playwright test tagsDemo.spec.ts --headed --grep "@regression || @sanity"
+npx playwright test tagsDemo.spec.ts --headed --grep "@sanity" --grep-invert "@regression"
 */
 
 
