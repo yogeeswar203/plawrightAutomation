@@ -1,0 +1,6 @@
+username,password,expected_status
+test123338756@gmail.com,test@203,valid
+test1233356@gmail.com,test@203,invalid
+test3338756@gmail.com,test@203,invalid
+tes23338756@gmail.com,test@203,invalid
+,,invalid

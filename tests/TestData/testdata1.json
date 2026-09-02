@@ -1,0 +1,26 @@
+[
+    {
+        "email":"test123338756@gmail.com",
+        "pwd":"test@203",
+        "status":"valid"
+
+    },
+    {
+        "email":"test1233756@gmail.com",
+        "pwd":"test@203",
+        "status":"invalid"
+
+    },
+    {
+        "email":"tet123338756@gmail.com",
+        "pwd":"test@203",
+        "status":"invalid"
+
+    },
+    {
+        "email":"tes12333856@gmail.com",
+        "pwd":"test@203",
+        "status":"invalid"
+
+    }
+]

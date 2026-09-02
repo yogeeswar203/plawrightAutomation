@@ -1,0 +1,28 @@
+[
+    {
+        "PrincipleAmount":50000,
+        "interestRate":8.2,
+        "Tenure":12,
+        "matuValu":"₹ 1,32,432",
+        "Type":"Months"
+
+    },
+    {
+        "PrincipleAmount":90000,
+        "interestRate":6.5,
+        "Tenure":11,
+         "matuValu":"₹ 95,994",
+         "Type":"Years"
+
+
+    },
+    {
+        "PrincipleAmount":580000,
+        "interestRate":10,
+        "Tenure":6,
+        "matuValu":"₹ 10,49,061",
+        "Type":"Months"
+
+    }
+    
+]

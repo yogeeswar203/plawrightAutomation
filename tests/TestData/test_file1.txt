@@ -5,3 +5,5 @@ https://demowebshop.tricentis.com/
 
 Orange demo site
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+
+https://sdetqa.vercel.app/fd-calculator
