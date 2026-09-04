@@ -54,9 +54,7 @@ export class singnUpPage
         await this.navigateToSignUp();
         await this.page.waitForTimeout(2000);
         await this.fillusername(username);
-        await this.page.waitForTimeout(2000);
         await this.fillpassword(password);
-        await this.page.waitForTimeout(2000);
 
         // since after clicking signup it will open the dailog box hence we need to register a dailog
         const dailogPromise = this.page.waitForEvent('dialog');

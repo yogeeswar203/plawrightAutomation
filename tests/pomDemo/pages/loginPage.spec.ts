@@ -13,7 +13,7 @@ export class loginPage{
     constructor(page:Page)
     {
         this.page = page;
-        this.loginLink =this.page.locator("#login2");
+        this.loginLink = this.page.locator("#login2");
         this.unsernameInput = this.page.locator("#loginusername");
         this.passwordInput = this.page.locator("#loginpassword");
         this.loginButton = this.page.locator("button[onclick='logIn()']");
@@ -22,7 +22,6 @@ export class loginPage{
     // Creating the actions for the each methods
 
     async navigatingToLogin(){
-        await this.page.waitForTimeout(5000);
         await this.loginLink.click();
 
     }
@@ -47,9 +46,7 @@ export class loginPage{
     async userLogin(username:string, password:string)
     {
         await this.enterUserName(username);
-        await this.page.waitForTimeout(1500);
         await this.enterPassword(password);
-        await this.page.waitForTimeout(1500);
         await this.clickOnLogin();
         await this.page.waitForTimeout(5000);
     }

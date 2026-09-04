@@ -8,3 +8,7 @@ Orange demo site
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 
 https://sdetqa.vercel.app/fd-calculator
+
+Demoblaze test login creds
+test1231251@gmail.com
+test@203

@@ -1,6 +1,9 @@
 import {test,expect} from "@playwright/test";
 import { singnUpPage } from "./pages/signupPage.spec";
 import { loginPage } from "./pages/loginPage.spec";
+import { HomePage } from "./pages/Homepage.spec";
+import { cartPage } from "./pages/cartpage.spec";
+
 
 
 test.describe.configure({mode:'serial'});
@@ -11,6 +14,8 @@ test.describe("test",async()=>{
     const testpassword = "Test@203";
     const testusername = "user1";
     let randomUserName:{username:string; password:string} |undefined;
+    const testProduct = "Nexus 6";
+    const testProduct2 = "Samsung galaxy s6";
 
     test.beforeEach(async({page})=>{
         
@@ -41,7 +46,39 @@ test.describe("test",async()=>{
         
         await login_page.navigatingToLogin();
         await login_page.userLogin(randomUserName!.username,randomUserName!.password);
+         
+
+        const hompage = new HomePage(page);
+        await hompage.getAlltheProductNames();
+
+        await hompage.addProductToCart(testProduct);
+        //await hompage.clickOnAddToCart();
+
+       
+
         
+        await page.waitForTimeout(3000);
+
+
+
+        // creating the object for the add cart 
+        const cartPageObject = new cartPage(page);
+        await cartPageObject.clickonHomePage();
+
+        await page.waitForTimeout(3000);
+        await hompage.addProductToCart(testProduct2);
+        //await hompage.clickOnAddToCart();
+
+        
+        await hompage.clickOnCartLink();
+        await cartPageObject.waitForCartToLoad();
+        const isProductInCart = await cartPageObject.isProductInCart(testProduct);
+        expect(isProductInCart).toBe(true); 
+        console.log(await cartPageObject.getTotalCartValue());  
+        console.log(await cartPageObject.getallProductNames());
+        console.log(await cartPageObject.getPriceAllProducts());  
+        console.log(await cartPageObject.getTotalPrice());
+        expect(await cartPageObject.getTotalCartValue()).toBe(await cartPageObject.getTotalPrice());
     });
 
 })
