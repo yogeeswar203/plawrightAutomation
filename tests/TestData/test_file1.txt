@@ -3,6 +3,9 @@ for shopping demo site
 https://sauce-demo.myshopify.com/
 https://demowebshop.tricentis.com/
 https://www.demoblaze.com/
+https://automationexercise.com/
+
+https://parabank.parasoft.com/parabank/index.htm
 
 Orange demo site
 https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
