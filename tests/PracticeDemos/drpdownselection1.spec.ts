@@ -41,9 +41,9 @@ test.describe("Verify the dropdown options",async()=>{
         await fp.fill("Testing");
    });
 
-   test("Verify the select dropdown", async({page})=>{
+   test.skip("Verify the select dropdown", async({page})=>{
 
-    await page.waitForTimeout(2000);
+    
     await page.goto("https://phptravels.com/demo");
     const country_locator_all = page.locator("select>option");
     const country_locator= page.locator("div>select");
@@ -64,10 +64,62 @@ test.describe("Verify the dropdown options",async()=>{
         console.log((await option.innerText()).trim());
     };
 
+    let all_countryOptions2:string[] = await country_locator_all.allInnerTexts();
+    console.log(`Options in the dropdown: ${all_countryOptions2}`);
+    
+   });
 
+   test.skip("Verify the sorted array functionality", async({page})=>{
 
+    await page.goto("https://testautomationpractice.blogspot.com/");
+    await page.waitForTimeout(2000);
+    const animal_loc_all = page.locator("#animals>option");
+    const animal_loc = page.locator("#animals");
+
+    const color_all_loc = page.locator("#colors>option");
+    const color_loc = page.locator("#colors>option");
+
+    
+    //
+    // for(let op of await animal_loc_all.all()){
+    //     let msg = await op.innerText();
+    //     console.log(msg);
+    // }
+
+    let allAnimals:string[] = await animal_loc_all.allInnerTexts();
+    let allColors:string[] = await color_all_loc.allInnerTexts();
+    
+    console.log(`${allColors}`);
+    const sr = [...allColors].sort();
+    console.log(`${sr}`);
+    expect(allColors).toEqual(sr);
 
    });
+
+   test("Verify the dropdown without select option", async({page})=>{
+
+    await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    await page.waitForTimeout(1000);
+    await page.locator("input[name='username']").fill("Admin");
+    await page.locator("input[name='password']").fill("admin123");
+    await page.locator("button[type='submit']").click();
+    await page.waitForTimeout(4000);
+    await page.getByRole('link',{name:'PIM'}).click();
+
+    const all_emp_status_loc = page.locator("div[role='listbox']>div");
+    const empstatus_loc = page.locator("div[class='oxd-select-text--after']>i").first();
+    await empstatus_loc.click();
+    await page.waitForTimeout(2000);
+    console.log(await all_emp_status_loc.allInnerTexts());
+
+
+   })
+
+
+
+
+
+
 
 
 })
