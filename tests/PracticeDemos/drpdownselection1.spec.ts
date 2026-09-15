@@ -112,6 +112,21 @@ test.describe("Verify the dropdown options",async()=>{
     await page.waitForTimeout(2000);
     console.log(await all_emp_status_loc.allInnerTexts());
 
+    for(let op of await all_emp_status_loc.all())
+    {
+        const op1 = await op.textContent();
+        //console.log(op1);
+        if(op1 === "Part-Time Contract")
+        {
+            op.click();
+            console.log("Part-Time Contract is selected succussfully");
+            break;
+        }
+
+    }
+    
+
+
 
    })
 
