@@ -74,9 +74,38 @@ test.describe("Validation for the Dynamic table", async()=>{
         let row_count = await no_rows.count();
         let col_count = await no_clos.count();
         console.log(`The no of row present ${row_count} and colums present ${col_count}`);
+        const allrows = await no_rows.all();
 
+        const tableData:string[][] = [];
 
+        for(let r=1; r<row_count; r++)
+        {
+            const cell_value = await no_rows.nth(r).locator('td').allTextContents();
+            tableData.push(cell_value);
+        }
 
+        console.log(tableData);
+
+        const prod_names =[];
+        const sub_names = [];
+        for(let r=0; r<tableData.length; r++)
+        {
+            prod_names.push(tableData[r][1]);
+            if(prod_names[r] === "Mukesh")
+            {
+                sub_names.push(tableData[r][3]);
+            }
+            
+        }
+        console.log(prod_names);
+        console.log(sub_names);
+        let total_price = 0;
+        for(let rq of sub_names)
+        {
+            total_price = parseFloat(rq)+total_price;
+        }
+
+        console.log(`The total price of the books by Mukesh: ${total_price}`);
     })
 
 
