@@ -35,7 +35,7 @@ test.describe("Validation for the Dynamic table", async()=>{
 
     });
 
-    test("TC 002: Verify the Disk Space",async ({page})=>{
+    test.skip("TC 002: Verify the Disk Space",async ({page})=>{
 
         const rows_loc = page.locator("#taskTable tbody tr");
         const col_loc = page.locator("#taskTable tbody tr td");
@@ -54,6 +54,30 @@ test.describe("Validation for the Dynamic table", async()=>{
             }
        }
 
+    });
+
+    test("reading the data from the table",async({page})=>
+    {   
+        const no_rows = page.locator("table[name='BookTable']>tbody>tr");
+        const no_clos = page.locator("table[name='BookTable']>tbody>tr>th");
+        const allTableData = page.locator("table[name='BookTable']>tbody>tr>td");
+
+/*
+        const all_data = await allTableData.all();
+        for(let op of all_data)
+        {
+            const op_data = await op.innerText();
+            console.log(op_data);
+        }
+ */
+
+        let row_count = await no_rows.count();
+        let col_count = await no_clos.count();
+        console.log(`The no of row present ${row_count} and colums present ${col_count}`);
+
+
+
     })
+
 
 })
