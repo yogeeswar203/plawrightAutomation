@@ -2,7 +2,7 @@ import{Page, test} from "@playwright/test";
 
 test.describe("Date picker Demo", async function(){
 
-    test("Verify the date picker demo 1", async({page})=>{
+    test.skip("Verify the date picker demo 1", async({page})=>{
 
         await page.goto("https://testautomationpractice.blogspot.com/");
         await page.waitForTimeout(2000);
@@ -19,12 +19,31 @@ test.describe("Date picker Demo", async function(){
         // await datePick1.focus();
         // await page.keyboard.press('Escape');
         await datePick1.click();
-        datePickFunction(page,"2025", "September", "23", false);
+        datePickFunction(page,"2026", "September", "23", false);
         await page.waitForTimeout(5000);
         await page.close();
+    });
+
+    test("Date Picker 2", async({page})=>{
+        page.goto("https://testautomationpractice.blogspot.com/");
+
+        const statDate_loc=  page.locator(".date-picker-box>input[placeholder='Start Date']");
+        const endDate = page.locator(".date-picker-box>input[placeholder='End Date']");
+        const submitBtn = page.locator("button[class='submit-btn']");
+        await page.waitForTimeout(2000);
+        await statDate_loc.fill("1994-05-26");
+        await endDate.fill("1998-05-26");
+        await submitBtn.click();
+
+        await page.waitForTimeout(5000);
+        await page.close();
+
     })
 
+
 }) 
+
+
 
 async function datePickFunction(page:Page, trgYear:string, trgMonth: string, trgDay:string, isFuture:boolean){
     
